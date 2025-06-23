@@ -24,6 +24,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { FormSavePassword } from "./form-save-password";
 
 const options = [
   { label: "Mayúsculas (A-Z)", value: "hasUppercase", icon: <CaseUpper /> },
@@ -115,7 +116,6 @@ const FormCreatePassword = () => {
           </h2>
           <Form {...form}>
             <form
-              action=""
               className="space-y-6"
               onSubmit={form.handleSubmit(handleGenerate)}
             >
@@ -180,6 +180,10 @@ const FormCreatePassword = () => {
                   <ShieldCheck />
                   Generar nueva contraseña
                 </Button>
+                <FormSavePassword
+                  password={password}
+                  passwordConfig={form.getValues()}
+                />
               </div>
             </form>
           </Form>
