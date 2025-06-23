@@ -19,7 +19,6 @@ import {
   CaseUpper,
   CopyIcon,
   Hash,
-  Pilcrow,
   ShieldCheck,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
