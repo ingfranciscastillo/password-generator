@@ -1,16 +1,63 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { generatePassword } from "@/lib/password";
-import { CopyIcon } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { generatePassword, PasswordOptions } from "@/lib/password";
+import {
+  ArrowUp01,
+  CaseLower,
+  CaseUpper,
+  CopyIcon,
+  Hash,
+  Pilcrow,
+  ShieldCheck,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+
+const options = [
+  { label: "Mayúsculas (A-Z)", value: "hasUppercase", icon: <CaseUpper /> },
+  { label: "Minúsculas (a-z)", value: "hasLowercase", icon: <CaseLower /> },
+  { label: "Números (0-9)", value: "hasNumbers", icon: <ArrowUp01 /> },
+  {
+    label: "Caracteres especiales",
+    value: "hasSpecialChars",
+    icon: <Hash />,
+  },
+];
 
 const FormCreatePassword = () => {
   const [password, setPassword] = useState("");
 
+  const form = useForm<PasswordOptions>({
+    defaultValues: {
+      length: 12,
+      hasUppercase: true,
+      hasLowercase: true,
+      hasNumbers: true,
+      hasSpecialChars: true,
+    },
+  });
+
   useEffect(() => {
-    const generatedPassword = generatePassword();
+    const generatedPassword = generatePassword({
+      length: form.getValues("length"),
+      hasUppercase: form.getValues("hasUppercase"),
+      hasLowercase: form.getValues("hasLowercase"),
+      hasNumbers: form.getValues("hasNumbers"),
+      hasSpecialChars: form.getValues("hasSpecialChars"),
+    });
     setPassword(generatedPassword);
   }, []);
 
@@ -19,6 +66,15 @@ const FormCreatePassword = () => {
       toast.success("Contraseña copiada al portapapeles", {
         duration: 2000,
       });
+    });
+  };
+
+  const handleGenerate = () => {
+    const values = form.getValues();
+    const newPassword = generatePassword(values);
+    setPassword(newPassword);
+    toast.success("Nueva contraseña generada", {
+      duration: 2000,
     });
   };
 
@@ -42,7 +98,7 @@ const FormCreatePassword = () => {
               tu contraseña generada:
             </p>
             <p className="text-xl font-mono break-all text-green-400 leading-relaxed">
-              {password || "Haz clic en el botón para generar una contraseña"}
+              {password}
             </p>
           </div>
           <Button
@@ -51,6 +107,83 @@ const FormCreatePassword = () => {
           >
             <CopyIcon />
           </Button>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardContent>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Configura tus opciones de contraseña:
+          </h2>
+          <Form {...form}>
+            <form
+              action=""
+              className="space-y-6"
+              onSubmit={form.handleSubmit(handleGenerate)}
+            >
+              <FormField
+                control={form.control}
+                name="length"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm font-medium text-gray-700">
+                      Longitud de la contraseña
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        min={8}
+                        max={128}
+                        {...field}
+                        className="text-center text-lg font-semibold h-12"
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Selecciona la longitud de tu contraseña (entre 8 y 128
+                      caracteres).
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="space-y-3">
+                <h3 className="text-sm text-gray-700">Incluir caracteres: </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {options.map(({ value, label, icon }) => (
+                    <FormField
+                      key={value}
+                      control={form.control}
+                      name={value}
+                      render={({ field }) => (
+                        <FormItem className="flex items-center space-x-2">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <span>{icon}</span>
+                          <FormLabel className="text-sm font-medium text-gray-700">
+                            {label}
+                          </FormLabel>
+                        </FormItem>
+                      )}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+                <Button
+                  type="submit"
+                  className="w-full text-white px-4 py-2 rounded-md transition-all duration-300 hover:scale-105"
+                >
+                  <ShieldCheck />
+                  Generar nueva contraseña
+                </Button>
+              </div>
+            </form>
+          </Form>
         </CardContent>
       </Card>
     </div>

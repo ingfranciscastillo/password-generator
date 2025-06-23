@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster position="top-center" />
+      <Toaster position="bottom-right" richColors />
       {children}
     </QueryClientProvider>
   );

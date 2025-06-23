@@ -1,4 +1,4 @@
-interface PasswordOptions {
+export interface PasswordOptions {
   hasUppercase?: boolean;
   hasLowercase?: boolean;
   hasNumbers?: boolean;
@@ -7,7 +7,7 @@ interface PasswordOptions {
 }
 
 export const generatePassword = ({
-  hasLowercase = true,
+  hasLowercase = false,
   hasNumbers = false,
   hasSpecialChars = false,
   hasUppercase = false,
