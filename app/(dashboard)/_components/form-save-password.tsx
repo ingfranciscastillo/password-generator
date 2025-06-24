@@ -28,6 +28,9 @@ import {
 } from "@/components/ui/form";
 import { PasswordOptions } from "@/lib/password";
 import PasswordOptionsTags from "./password-options-tags";
+import { useMutation } from "@tanstack/react-query";
+import { CreatePasswordAction } from "../_actions/create-password.action";
+import { toast } from "sonner";
 
 interface Props {
   password: string;
@@ -45,7 +48,9 @@ export function FormSavePassword({ password, passwordConfig }: Props) {
     },
   });
 
-  const handleSubmit = (values: PasswordSchema) => {};
+  const handleSubmit = (values: PasswordSchema) => {
+    mutate(values);
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -57,6 +62,19 @@ export function FormSavePassword({ password, passwordConfig }: Props) {
       form.setValue("hasSpecialChars", passwordConfig.hasSpecialChars);
     }
   }, [isOpen, password, passwordConfig, form]);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: CreatePasswordAction,
+    onSuccess(data, variables, context) {
+      form.reset();
+      toast.success("Contraseña guardada correctamente");
+      setIsOpen(false);
+    },
+    onError(error, variables, context) {
+      toast.error("Error al guardar la contraseña");
+      console.error("Error saving password:", error);
+    },
+  });
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -142,7 +160,11 @@ export function FormSavePassword({ password, passwordConfig }: Props) {
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button type="submit" onClick={form.handleSubmit(handleSubmit)}>
+          <Button
+            disabled={isPending}
+            type="submit"
+            onClick={form.handleSubmit(handleSubmit)}
+          >
             Save changes
           </Button>
         </DialogFooter>

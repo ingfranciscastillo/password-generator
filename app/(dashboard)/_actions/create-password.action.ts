@@ -1,3 +1,4 @@
+"use server";
 import { cryptr } from "@/lib/encrypt";
 import prisma from "@/lib/prisma";
 import { passwordSchema, PasswordSchema } from "@/schema/password.schema";
