@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/form";
 import { PasswordOptions } from "@/lib/password";
 import PasswordOptionsTags from "./password-options-tags";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CreatePasswordAction } from "../_actions/create-password.action";
 import { toast } from "sonner";
 
@@ -63,12 +63,16 @@ export function FormSavePassword({ password, passwordConfig }: Props) {
     }
   }, [isOpen, password, passwordConfig, form]);
 
+  const queryClient = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationFn: CreatePasswordAction,
     onSuccess(data, variables, context) {
       form.reset();
       toast.success("Contraseña guardada correctamente");
       setIsOpen(false);
+
+      queryClient.invalidateQueries({ queryKey: ["passwords"] });
     },
     onError(error, variables, context) {
       toast.error("Error al guardar la contraseña");
