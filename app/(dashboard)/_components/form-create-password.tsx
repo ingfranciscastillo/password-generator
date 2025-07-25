@@ -35,7 +35,7 @@ const options = [
     value: "hasSpecialChars",
     icon: <Hash />,
   },
-];
+] as const;
 
 const FormCreatePassword = () => {
   const [password, setPassword] = useState("");
