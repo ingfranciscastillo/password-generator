@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getPasswordAction } from "../_actions/get-password.action";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Copy, CopyIcon } from "lucide-react";
+import { CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 import PasswordOptionsTags from "./password-options-tags";
 import PasswordDeleteDialog from "./password-delete-dialog";

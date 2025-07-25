@@ -11,7 +11,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { PasswordSchema, passwordSchema } from "@/schema/password.schema";
 import { SaveIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -67,14 +66,14 @@ export function FormSavePassword({ password, passwordConfig }: Props) {
 
   const { mutate, isPending } = useMutation({
     mutationFn: CreatePasswordAction,
-    onSuccess(data, variables, context) {
+    onSuccess() {
       form.reset();
       toast.success("Contraseña guardada correctamente");
       setIsOpen(false);
 
       queryClient.invalidateQueries({ queryKey: ["passwords"] });
     },
-    onError(error, variables, context) {
+    onError(error) {
       toast.error("Error al guardar la contraseña");
       console.error("Error saving password:", error);
     },

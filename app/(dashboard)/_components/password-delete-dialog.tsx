@@ -31,7 +31,7 @@ const PasswordDeleteDialog = ({ id }: Props) => {
         queryKey: ["passwords"],
       }); // Refresca la lista de contraseñas
     },
-    onError: (error) => {
+    onError: () => {
       // Aquí puedes manejar el error, como mostrar un mensaje de error
       toast.error("Error al eliminar la contraseña");
     },

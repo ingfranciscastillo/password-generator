@@ -1,4 +1,3 @@
-import Image from "next/image";
 import FormCreatePassword from "./(dashboard)/_components/form-create-password";
 import PasswordList from "./(dashboard)/_components/password-list";
 
