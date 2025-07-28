@@ -1,5 +1,25 @@
 ![Screenshot de la aplicación](screenshot.png)
 
+![Next.js](https://img.shields.io/badge/Next.js-%23000000?style=for-the-badge&logo=next.js&logoColor=white)
+
+![React](https://img.shields.io/badge/React-%2361DAFB?style=for-the-badge&logo=react&logoColor=black)
+
+![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6?style=for-the-badge&logo=typescript&logoColor=white)
+
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-%2306B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
+![Radix UI](https://img.shields.io/badge/Radix_UI-Primitives-%23111?style=for-the-badge)
+
+![React Hook Form](https://img.shields.io/badge/React_Hook_Form-Forms-%23EC5990?style=for-the-badge&logo=reacthookform&logoColor=white)
+
+![Zod](https://img.shields.io/badge/Zod-Validation-%230870d4?style=for-the-badge)
+
+![Prisma](https://img.shields.io/badge/Prisma-ORM-%230C344B?style=for-the-badge&logo=prisma&logoColor=white)
+
+![TanStack Query](https://img.shields.io/badge/TanStack_Query-Data_Fetching-%23FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+
+![Lucide React](https://img.shields.io/badge/Lucide_React-Icons-%23222222?style=for-the-badge)
+
 # 🛡️ Password Generator
 
 Una herramienta web moderna y segura para generar contraseñas aleatorias y robustas. Diseñada para ayudarte a crear contraseñas únicas que protejan tus cuentas y datos personales.
@@ -173,7 +193,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 👨‍💻 Autor
 
-**Francisco Castillo**
+**Francis Castillo**
 
 - GitHub: [@ingfranciscastillo](https://github.com/ingfranciscastillo)
 - Proyecto: [Password Generator](https://github.com/ingfranciscastillo/password-generator)
@@ -185,3 +205,5 @@ Si este proyecto te fue útil, ¡no olvides darle una estrella! ⭐
 ---
 
 **💡 Consejo de Seguridad:** Recuerda usar contraseñas únicas para cada cuenta y considera usar un gestor de contraseñas para almacenarlas de forma segura.
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%23FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](coff.ee/ingfranciscastillo)
