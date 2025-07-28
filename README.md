@@ -1,3 +1,5 @@
+![Screenshot de la aplicación](screenshot.png)
+
 # 🛡️ Password Generator
 
 Una herramienta web moderna y segura para generar contraseñas aleatorias y robustas. Diseñada para ayudarte a crear contraseñas únicas que protejan tus cuentas y datos personales.
@@ -145,10 +147,6 @@ password-generator/
 ├── tsconfig.json               # Configuración de TypeScript
 └── README.md                   # Documentación
 ```
-
-## 🎨 Capturas de Pantalla
-
-![Screenshot de la aplicación](screenshot.png)
 
 ## 🤝 Contribuciones
 
